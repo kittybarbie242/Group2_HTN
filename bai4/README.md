@@ -20,7 +20,7 @@
   - `Delay_us()` → reset bộ đếm về 0, chờ đến khi Counter đạt giá trị mong muốn.  
   - `Delay_ms()` → gọi lặp lại `Delay_us(1000)` theo số mili giây cần chờ.
     
-![alt text](Ex4.jpg)  
+![alt text](Ex2.jpg)  
 
 **Source code:** [4.1](bai4.1/main.c)
 
@@ -52,11 +52,12 @@
   - LED (LD2) → PA5  
   - LED nhấp nháy với chu kỳ 1000ms (1Hz).  
 
-![alt text](Ex4.jpg)  
+![alt text](Ex3.jpg)  
 
 **Source code:** [4.2](bai4.2/main.c)  
 
 **Video Demo:** [DEMO](https://drive.google.com/file/d/1-fPehWmMZ_MQAn5zlWZd9v7xuTtwPYq9/view)
+
 
 
 
