@@ -1,88 +1,76 @@
 #include "stm32f10x.h"
+#include "stm32f10x_gpio.h"
+#include "stm32f10x_rcc.h"
+#include "stm32f10x_exti.h"
+#include "misc.h"  
 
-void GPIO_Config(void);
-void EXTI_Config(void);
-void delay_ms(uint32_t time);
-
-volatile uint8_t led2_state = 0;
-
-int main(void)
-{
-    GPIO_Config();
-    EXTI_Config();
-
-    while (1)
-    {
-        
-        GPIO_SetBits(GPIOA, GPIO_Pin_0);
-        delay_ms(500);
-        GPIO_ResetBits(GPIOA, GPIO_Pin_0);
-        delay_ms(500);
+void delay(int time){
+    for(int i = 0; i < time; i++){
+        for(int j = 0; j < 0x2AFF; j++);
     }
 }
 
+void GPIO_Configure(){
+    GPIO_InitTypeDef gpio;
 
-void GPIO_Config(void)
-{
-    GPIO_InitTypeDef GPIO_InitStructure;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB, ENABLE);
+    // PA5: LED1 
+    gpio.GPIO_Pin   = GPIO_Pin_5;
+    gpio.GPIO_Mode  = GPIO_Mode_Out_PP;
+    gpio.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &gpio);
 
+    // PA6: LED2 
+    gpio.GPIO_Pin   = GPIO_Pin_6;
+    gpio.GPIO_Mode  = GPIO_Mode_Out_PP;
+    gpio.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &gpio);
 
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB | RCC_APB2Periph_AFIO, ENABLE);
-	
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
+    // PB0: Button
+    gpio.GPIO_Pin   = GPIO_Pin_0;
+    gpio.GPIO_Mode  = GPIO_Mode_IPU;
+    GPIO_Init(GPIOB, &gpio);
 }
 
-
-void EXTI_Config(void)
-{
-    EXTI_InitTypeDef EXTI_InitStructure;
-    NVIC_InitTypeDef NVIC_InitStructure;
-
+    // EXTI 
+void EXTI_Line0_Configure(){
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 
     GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, GPIO_PinSource0);
 
+    EXTI_InitTypeDef exti;
+    exti.EXTI_Line    = EXTI_Line0;
+    exti.EXTI_Mode    = EXTI_Mode_Interrupt;
+    exti.EXTI_Trigger = EXTI_Trigger_Falling; 
+    exti.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&exti);
 
-    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; 
-    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-    EXTI_Init(&EXTI_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure);
+    NVIC_InitTypeDef nvic;
+    nvic.NVIC_IRQChannel = EXTI0_IRQn;
+    nvic.NVIC_IRQChannelPreemptionPriority = 0;
+    nvic.NVIC_IRQChannelSubPriority        = 0;
+    nvic.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&nvic);
 }
 
-void EXTI0_IRQHandler(void)
-{
-    if (EXTI_GetITStatus(EXTI_Line0) != RESET)
-    {
-				led2_state =! led2_state;
-				GPIO_WriteBit(GPIOA, GPIO_Pin_1, (BitAction) led2_state);
+void EXTI0_IRQHandler(void){
+    if(EXTI_GetITStatus(EXTI_Line0) != RESET){
+    EXTI_ClearITPendingBit(EXTI_Line0);  
+    if(GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_5)) 
+        GPIO_ResetBits(GPIOA, GPIO_Pin_5);         
+    else
+        GPIO_SetBits(GPIOA, GPIO_Pin_5);           
+		}
+}
 
-        EXTI_ClearITPendingBit(EXTI_Line0);
+int main(void){
+    GPIO_Configure();
+    EXTI_Line0_Configure();
+
+    while(1){
+        GPIO_SetBits(GPIOA, GPIO_Pin_6);   
+        delay(1000);
+        GPIO_ResetBits(GPIOA, GPIO_Pin_6);
+        delay(1000);
     }
 }
-
-void delay_ms(uint32_t time)
-{
-    uint32_t i, j;
-    for (i = 0; i < time; i++)
-    {
-        for (j = 0; j < 0x2AFF; j++);
-    }
-}
-
