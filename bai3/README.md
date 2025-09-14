@@ -24,9 +24,10 @@ Thông qua ví dụ, sinh viên sẽ:
   - Button → PB0  
  
 
-![alt text](Ex1.jpg)  
+![alt text](image.jpg)  
 
 **Source code:** [Bài 3](main.c)  
 
 **Video Demo:** [DEMO](https://drive.google.com/drive/u/0/folders/18WuSejkMz8G0gB_w4a7SlnFkfVLqn4w3)
+
 
