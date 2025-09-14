@@ -22,7 +22,7 @@
     
 ![alt text](Ex2.jpg)  
 
-**Source code:** [4.1](bai4.1/main.c)
+**Source code:**  [4.1](bai4.1/main.c)
 
 
 
@@ -54,9 +54,10 @@
 
 ![alt text](Ex3.jpg)  
 
-**Source code:** [4.2](bai4.2/main.c)  
+**Source code:**  [4.2](bai4.2/main.c)  
 
-**Video Demo:** [DEMO](https://drive.google.com/file/d/1-fPehWmMZ_MQAn5zlWZd9v7xuTtwPYq9/view)
+**Video Demo:**  [DEMO](https://drive.google.com/file/d/1-fPehWmMZ_MQAn5zlWZd9v7xuTtwPYq9/view)
+
 
 
 
