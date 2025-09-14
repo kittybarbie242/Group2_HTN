@@ -1,5 +1,5 @@
 
-### Cấu hình ngắt ngoài cho 1 nút nhấn. Khi nhấn nút, trạng thái của led sẽ đảo ngược. Trong quá trình đó, 1 led khác vẫn nhấp náy với chu kỳ 1HZ  
+### Cấu hình ngắt ngoài cho 1 nút nhấn. Khi nhấn nút, trạng thái của Led sẽ đảo ngược. Trong quá trình đó, 1 led khác vẫn nhấp nháy với chu kỳ 1Hz
 **Mục đích:**  
 Bài thực hành này giúp người học làm quen với việc điều khiển LED và xử lý tín hiệu nút nhấn bằng vi điều khiển.  
 Thông qua ví dụ, sinh viên sẽ:  
@@ -29,6 +29,7 @@ Thông qua ví dụ, sinh viên sẽ:
 **Source code:** [Bài 3](main.c)  
 
 **Video Demo:** [DEMO](https://drive.google.com/drive/u/0/folders/18WuSejkMz8G0gB_w4a7SlnFkfVLqn4w3)
+
 
 
 
