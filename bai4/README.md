@@ -20,7 +20,7 @@
   - `Delay_us()` → reset bộ đếm về 0, chờ đến khi Counter đạt giá trị mong muốn.  
   - `Delay_ms()` → gọi lặp lại `Delay_us(1000)` theo số mili giây cần chờ.
   -  
-**Source code:** [Bài 4.1](bai4.1/main.c)
+**Source code:** [4.1](bai4.1/main.c)
 
 #### Yêu cầu 2: Cấu hình Timer để tạo ngắt định kỳ và điều khiển LED  
 
@@ -50,7 +50,8 @@
 
 ![alt text](Ex4.jpg)  
 
-**Source code:** [Bài 4](main.c)  
+**Source code:** [4.2](bai4.2/main.c)  
 
 **Video Demo:** [DEMO](https://drive.google.com/drive/u/0/folders/18WuSejkMz8G0gB_w4a7SlnFkfVLqn4w3)
+
 
