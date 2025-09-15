@@ -69,8 +69,8 @@ int main(void){
 
     while(1){
         GPIO_SetBits(GPIOA, GPIO_Pin_6);   
-        delay(1000);
+        delay(500);
         GPIO_ResetBits(GPIOA, GPIO_Pin_6);
-        delay(1000);
+        delay(500);
     }
 }
