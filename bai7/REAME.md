@@ -40,7 +40,7 @@
 **Source code:** [Code](7.1.c) 
 
 
-# II. Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên terminal.
+# II. Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên Terminal.
 ## 1. Mục đích
 - Cấu hình **STM32F103** làm **Master SPI**.  
 - Kết nối với cảm biến **ADXL345** qua SPI.  
@@ -92,18 +92,19 @@
 
 1. **Khởi tạo GPIO** cho SPI và CS.  
 2. **Cấu hình SPI1**: Master, 8 bit, mode 3, baudrate ~4.5MHz.  
-3. **Cấu hình UART1**: baudrate 9600 để in dữ liệu ra PC.  
+3. **Cấu hình UART1**: baudrate 9600 để gửi dữ liệu lên PC.  
 4. **Trong vòng lặp chính**:
    - Kéo CS xuống LOW.  
    - Gửi byte `0x80 | 0x00 = 0x80` để yêu cầu đọc thanh ghi DEVID.  
    - Gửi 1 byte dummy (`0x00`) để nhận dữ liệu trả về.  
    - Nhả CS lên HIGH.  
    - In giá trị đọc được qua UART.  
-5. **Kết quả nhận được**: Terminal sẽ hiển thị
+5. **Kết quả nhận được**: Hiển thị trên Terminal
 
 **Source code:** [Bài 7](7.2.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1kkN5NX923quCowhPOLtsPBhzEQKVJW5f/view?usp=sharing)  
+
 
 
 
