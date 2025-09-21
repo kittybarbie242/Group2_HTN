@@ -26,7 +26,7 @@
 
 ---
 
-## 4. Phân tích code
+## 4. Phân tích chương trình
 - **GPIO_Config()**: cấu hình PA5, PA7 (AF_PP), PA6 (IN_FLOATING), PA4 (Output Push-Pull).  
 - **SPI1_Config()**:  
   - Master mode, 8-bit, full duplex.  
@@ -104,6 +104,7 @@
 **Source code:** [Bài 7](7.2.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1kkN5NX923quCowhPOLtsPBhzEQKVJW5f/view?usp=sharing)  
+
 
 
 
