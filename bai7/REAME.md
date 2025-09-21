@@ -1,6 +1,45 @@
-# Cấu hình STM32 là Master SPI
+# I. Cấu hình STM32 là Master SPI
+## 1. Mục đích
+- Cấu hình **STM32F103** làm **Master SPI**.  
+- Thiết lập GPIO cho SPI1 (SCK, MISO, MOSI, CS).  
+- Chuẩn bị giao tiếp với các thiết bị ngoại vi SPI
 
-# Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên terminal.
+---
+
+## 2. Lý thuyết SPI
+- SPI là giao tiếp nối tiếp đồng bộ, gồm 4 tín hiệu:  
+  - **SCK**: Clock từ Master.  
+  - **MOSI**: Master → Slave.  
+  - **MISO**: Slave → Master.  
+  - **CS**: chọn Slave (mức LOW khi giao tiếp).  
+- STM32F1 hỗ trợ nhiều mode SPI, ví dụ mode 0 và mode 3.  
+
+---
+
+## 3. Sơ đồ kết nối cơ bản
+| STM32F103 | Thiết bị SPI |
+|-----------|--------------|
+| PA5 (SCK) | SCK |
+| PA6 (MISO)| MISO|
+| PA7 (MOSI)| MOSI|
+| PA4 (CS)  | CS  |
+
+---
+
+## 4. Code
+- **GPIO_Config()**: cấu hình PA5, PA7 (AF_PP), PA6 (IN_FLOATING), PA4 (Output Push-Pull).  
+- **SPI1_Config()**:  
+  - Master mode, 8-bit, full duplex.  
+  - CPOL=1, CPHA=1 (SPI mode 3).  
+  - Baudrate = fPCLK/16 (~4.5MHz).  
+  - MSB first.  
+- **main()**: gọi `GPIO_Config()` và `SPI1_Config()`, chờ sẵn cho các thao tác truyền/nhận SPI.  
+
+---
+
+**Source code:** [Code](7.1.c) 
+
+# II. Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên terminal.
 ## 1. Mục đích
 - Cấu hình **STM32F103** làm **Master SPI**.  
 - Kết nối với cảm biến **ADXL345** qua SPI.  
@@ -64,6 +103,7 @@
 **Source code:** [Bài 7](7.2.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1kkN5NX923quCowhPOLtsPBhzEQKVJW5f/view?usp=sharing)  
+
 
 
 
