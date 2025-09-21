@@ -1,5 +1,6 @@
-# Cấu hình SPI trên STM32F1 giao tiếp với ADXL345 và hiển thị dữ liệu qua UART
+# Cấu hình STM32 là Master SPI
 
+# Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên terminal.
 ## 1. Mục đích
 - Cấu hình **STM32F103** làm **Master SPI**.  
 - Kết nối với cảm biến **ADXL345** qua SPI.  
@@ -62,7 +63,8 @@
 
 **Source code:** [Bài 7](7.2.c)  
 
-**Video Demo:** [Demo](https://drive.google.com/drive/folders/17Ia6tWBM8yH0m9qANKRILyJC9V2DzWLb)  
+**Video Demo:** [Demo](https://drive.google.com/file/d/1kkN5NX923quCowhPOLtsPBhzEQKVJW5f/view?usp=sharing)  
+
 
 
 
