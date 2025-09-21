@@ -40,7 +40,8 @@
 
 ![alt text](I2C.jpg) 
 
-**Source code:** [Bài 6](main.c)  
+**Source code:** [Bài 6](RQ2.c)  
 
 **Video Demo:** [DEMO](https://drive.google.com/file/d/1lrmTQHrL5aBrYNV21NOO-3OGtNQVIlpt/view?usp=drive_link)
+
 
