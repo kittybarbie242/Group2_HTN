@@ -1,4 +1,4 @@
-# I. Cấu hình STM32 là Master SPI
+# I. Cấu hình STM32F1 là Master SPI
 ## 1. Mục đích
 - Cấu hình **STM32F103** làm **Master SPI**.  
 - Thiết lập GPIO cho SPI1 (SCK, MISO, MOSI, CS).  
@@ -12,7 +12,7 @@
   - **MOSI**: Master → Slave.  
   - **MISO**: Slave → Master.  
   - **CS**: chọn Slave (mức LOW khi giao tiếp).  
-- STM32F1 hỗ trợ nhiều mode SPI, ví dụ mode 0 và mode 3.  
+- STM32F103 có nhiều khối SPI (SPI1, SPI2,...) 
 
 ---
 
@@ -26,7 +26,7 @@
 
 ---
 
-## 4. Code
+## 4. Phân tích code
 - **GPIO_Config()**: cấu hình PA5, PA7 (AF_PP), PA6 (IN_FLOATING), PA4 (Output Push-Pull).  
 - **SPI1_Config()**:  
   - Master mode, 8-bit, full duplex.  
@@ -38,6 +38,7 @@
 ---
 
 **Source code:** [Code](7.1.c) 
+
 
 # II. Cấu hình SPI trên STM32F1 kết nối với module SPI (ADXL345). Gửi một byte dữ liệu và nhận phản hồi, hiển thị dữ liệu lên terminal.
 ## 1. Mục đích
@@ -103,6 +104,7 @@
 **Source code:** [Bài 7](7.2.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1kkN5NX923quCowhPOLtsPBhzEQKVJW5f/view?usp=sharing)  
+
 
 
 
