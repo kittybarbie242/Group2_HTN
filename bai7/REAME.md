@@ -1,4 +1,4 @@
-# Thí nghiệm: Giao tiếp SPI với ADXL345 và hiển thị dữ liệu qua UART
+# Cấu hình SPI trên STM32F1 giao tiếp với ADXL345 và hiển thị dữ liệu qua UART
 
 ## 1. Mục đích
 - Cấu hình **STM32F103** làm **Master SPI**.  
@@ -59,6 +59,10 @@
    - Nhả CS lên HIGH.  
    - In giá trị đọc được qua UART.  
 5. **Kết quả nhận được**: Terminal sẽ hiển thị
+
+**Source code:** [Bài 7](7.2.c)  
+
+**Video Demo:** [Demo](https://drive.google.com/drive/u/0/folders/1Oe8JzTGrgc85HJdUix4PGqNyrMWjyYAS)  
 
 
 
