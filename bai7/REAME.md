@@ -44,6 +44,7 @@
 | 3.3V             | VCC      |
 | GND              | GND      |
 
+![alt text](SPI.jpg) 
 ---
 
 ## 4. Mô tả chương trình
@@ -58,5 +59,6 @@
    - Nhả CS lên HIGH.  
    - In giá trị đọc được qua UART.  
 5. **Kết quả nhận được**: Terminal sẽ hiển thị
+
 
 
