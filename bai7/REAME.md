@@ -62,7 +62,8 @@
 
 **Source code:** [Bài 7](7.2.c)  
 
-**Video Demo:** [Demo](https://drive.google.com/drive/u/0/folders/1Oe8JzTGrgc85HJdUix4PGqNyrMWjyYAS)  
+**Video Demo:** [Demo](https://drive.google.com/drive/folders/17Ia6tWBM8yH0m9qANKRILyJC9V2DzWLb)  
+
 
 
 
