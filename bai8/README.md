@@ -78,7 +78,7 @@ Bài thực hành giúp chúng ta làm quen với việc đọc giá trị ADC v
 - Điều khiển rèm cửa tự động
 
 
-![alt text](ex8.jpg)  
+![alt text](EX8.jpg)  
 ---
 
 **Source code:** [Bài 8](EX8_lib.c)  
