@@ -26,10 +26,9 @@ int main(void) {
     while(1) {
         if(dma_flag) {      
             dma_flag = 0;   
-						
 					
-						voltage = (ADC_ConvertedValue * 3300.0) / 4095.0; 
-						sprintf(buffer, "ADC Value: %d | Voltage: %.2f mV\r\n", ADC_ConvertedValue, voltage);
+			voltage = (ADC_ConvertedValue * 3300.0) / 4095.0; 
+			sprintf(buffer, "ADC Value: %d | Voltage: %.2f mV\r\n", ADC_ConvertedValue, voltage);
             USART1_SendString(buffer);
 
             delay(100); 
@@ -60,7 +59,7 @@ void GPIO_Config(void) {
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
-void USART1_Config(void) {
+	void USART1_Config(void) {
     USART_InitTypeDef USART_InitStructure;
 
     USART_InitStructure.USART_BaudRate = 9600;
