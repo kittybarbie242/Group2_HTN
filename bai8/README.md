@@ -81,6 +81,6 @@ Bài thực hành giúp chúng ta làm quen với việc đọc giá trị ADC v
 ![alt text](EX8.jpg)  
 ---
 
-**Source code:** [Bài 8](EX8_lib.c)  
+**Source code:** [Bài 8](EX8_lib1.c)  
 
 **Video Demo:** [Demo EX8](https://drive.google.com/file/d/1fHd_4chSRnwTCXccJLD6f4aPwpCooSU5/view?usp=drive_link) 
