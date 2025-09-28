@@ -15,7 +15,7 @@ void USART1_SendString(char *s);
 void delay(int time);
 
 int main(void) {
-		float voltage;
+	float voltage;
     char buffer[50];
 	
     RCC_Config();
