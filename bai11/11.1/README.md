@@ -83,7 +83,8 @@ Thông qua bài tập, chúng ta sẽ:
 
 ![alt text](img.jpg)
 
-**Source code:** [Bài 11.1](main.c)  
+**Source code:** [Bài 11.1](11.1.c)  
 
 **Video Demo:** [Demo EX10](https://drive.google.com/file/d/1TGZXjy8vQ2uARfhg47MrhXTECS0gZ88F/view?usp=drive_link)
+
 
