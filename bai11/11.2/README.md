@@ -1,4 +1,4 @@
-# Nhấp nháy LED nâng cao (FreeRTOS)
+# Cấu hình LED nhấp nháy nâng cao (FreeRTOS)
 
 ## Mục đích
 - Sử dụng FreeRTOS để nhấp nháy 3 LED với tần số khác nhau: 3Hz, 10Hz, 25Hz.  
@@ -25,3 +25,6 @@
   - LED2 nhấp nháy 10Hz  
   - LED3 nhấp nháy 25Hz  
 - Các LED nhấp nháy độc lập, không ảnh hưởng nhau nhờ FreeRTOS quản lý tác vụ song song.
+
+**Source code:** [Bài 11.2](11.2.c)  
+
