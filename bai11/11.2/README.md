@@ -5,18 +5,18 @@
 - Thực hiện nâng cao: dùng **1 hàm tác vụ duy nhất**, truyền tham số để thay đổi chân LED và tần số.
 
 ## Ý tưởng
-- Tạo 1 hàm tác vụ `led_blink_task(void *pvParameters)` nhận tham số cấu hình LED.  
+- Tạo 1 hàm tác vụ `LED_Task(void *pvParameters)` nhận tham số cấu hình LED.  
 - Từ tham số, xác định chân GPIO và tần số nhấp nháy.  
 - Tạo 3 tác vụ cùng hàm này với các tham số khác nhau để nhấp nháy 3 LED độc lập.
 
 ## Cấu hình phần cứng
-- STM32 hoặc board tương thích FreeRTOS.  
+- STM32F103C8T6 sử dụng FreeRTOS.  
 - 3 LED nối với các chân GPIO (GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2).  
-- Nguồn: 3.3V hoặc 5V tùy board.
+- Nguồn: 3.3V hoặc 5V.
 
 ## Mô tả cơ bản
-- Tác vụ `led_blink_task`:
-  - Nhận tham số `LedConfig` (GPIO, frequency).  
+- Tác vụ `LED_Task`:
+  - Nhận tham số `LED_Config_t` (port, pin, frequency).  
   - Dùng `vTaskDelayUntil()` để nhấp nháy LED ổn định theo tần số.
 - Trong `main()`:
   - Tạo 3 task với các tham số khác nhau cho 3 LED.
@@ -27,4 +27,5 @@
 - Các LED nhấp nháy độc lập, không ảnh hưởng nhau nhờ FreeRTOS quản lý tác vụ song song.
 
 **Source code:** [Bài 11.2](11.2.c)  
+
 
