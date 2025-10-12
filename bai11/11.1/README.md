@@ -81,8 +81,9 @@ Thông qua bài tập, chúng ta sẽ:
 
   - Làm cơ sở cho ứng dụng điều khiển nhiều thiết bị đồng thời trong hệ thống IoT
 
+![alt text](img.jpg)
 
-
-**Source code:** [EX10_RTOS](main.c)  
+**Source code:** [Bài 11.1](main.c)  
 
 **Video Demo:** [Demo EX10](https://drive.google.com/file/d/1TGZXjy8vQ2uARfhg47MrhXTECS0gZ88F/view?usp=drive_link)
+
