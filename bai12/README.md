@@ -1,11 +1,11 @@
-# Bài tập FreeRTOS – Giao tiếp Queue giữa hai Task điều khiển LED
+# FreeRTOS – Giao tiếp Queue giữa hai Task điều khiển LED
 
 ### Yêu cầu
 
 Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song song:
 
-* **Task 1 (LED_Task):** Nhận dữ liệu từ hàng đợi và điều khiển LED nhấp nháy theo tần số và độ rộng xung tương ứng.
-* **Task 2 (Control_Task):** Gửi các giá trị tần số và độ rộng xung thay đổi định kỳ sang hàng đợi để điều khiển LED.
+* **Task 1 (LedBlinkTask):** Nhận dữ liệu từ hàng đợi và điều khiển LED nhấp nháy theo tần số và độ rộng xung tương ứng.
+* **Task 2 (ControlTask):** Gửi các giá trị tần số và độ rộng xung thay đổi định kỳ sang hàng đợi để điều khiển LED.
 
 **Kết quả:** LED trên chân PC13 nhấp nháy với tần số và độ rộng xung thay đổi liên tục theo thời gian.
 
@@ -14,18 +14,18 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 ### Ý tưởng
 
 * Sử dụng **Queue** để truyền dữ liệu giữa hai tác vụ trong FreeRTOS.
-* Dữ liệu truyền đi là một cấu trúc `SignalParams` gồm:
+* Dữ liệu truyền đi là một cấu trúc `LedConfig` gồm:
 
   ```c
   typedef struct {
       uint32_t frequency;  // Tần số nhấp nháy (Hz)
       uint8_t dutyCycle;   // Độ rộng xung (%)
-  } SignalParams;
+  }LedConfig;
   ```
-* **Control_Task** định kỳ thay đổi giá trị frequency và dutyCycle, sau đó gửi vào hàng đợi.
-* **LED_Task** đọc dữ liệu từ hàng đợi, tính toán chu kỳ bật/tắt LED dựa vào frequency và dutyCycle.
+* **ControlTask** định kỳ thay đổi giá trị frequency và dutyCycle, sau đó gửi vào hàng đợi.
+* **LedBlinkTask** đọc dữ liệu từ hàng đợi, tính toán chu kỳ bật/tắt LED dựa vào frequency và dutyCycle.
 * Nếu không có dữ liệu mới, LED sẽ tiếp tục nhấp nháy theo thông số cũ.
-* Sử dụng `vTaskDelayUntil()` để đảm bảo chu kỳ LED chính xác theo thời gian thực.
+* Sử dụng `vTaskDelay()` để đảm bảo chu kỳ LED chính xác theo thời gian thực.
 
 ---
 
@@ -34,7 +34,7 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 * **IDE:** Keil µVision5
 * **Thư viện sử dụng:**
 
-  * FreeRTOS Kernel (thư mục `FreeRTOS/FreeRTOS-Kernel/`)
+  * FreeRTOS Kernel
   * STM32F10x Standard Peripheral Library
 * **File cấu hình:**
 
@@ -64,12 +64,12 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 
 #### 2. Khởi tạo Queue
 
-* Tạo hàng đợi `xSignalQueue` có thể chứa tối đa **5 phần tử** kiểu `SignalParams`.
+* Tạo hàng đợi `LedConfigQueue` có thể chứa tối đa **5 phần tử** kiểu `LedConfig`.
 * Mỗi phần tử lưu tần số nhấp nháy và độ rộng xung của LED.
 
 #### 3. Tạo các Task
 
-* **Task 1 – LED_Task:**
+* **Task 1 – LedBlinkTask:**
 
   * Dùng `xQueueReceive()` để nhận dữ liệu từ hàng đợi.
   * Tính toán thời gian bật/tắt LED theo công thức:
@@ -77,14 +77,14 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
     * `period = 1000 / frequency` (ms)
     * `onTime = period * dutyCycle / 100`
     * `offTime = period - onTime`
-  * Điều khiển LED bật/tắt tương ứng và trễ bằng `vTaskDelayUntil()` để giữ nhịp chính xác.
+  * Điều khiển LED bật/tắt tương ứng và trễ bằng `vTaskDelay()` để giữ nhịp chính xác.
   * Nếu không có dữ liệu mới, tiếp tục dùng giá trị cũ để duy trì nháy LED.
 
-* **Task 2 – Control_Task:**
+* **Task 2 – ControlTask:**
 
   * Chu kỳ gửi dữ liệu: 1 giây/lần.
   * Thay đổi lần lượt các giá trị frequency và dutyCycle (ví dụ: 1Hz–20%, 2Hz–50%, 5Hz–80%).
-  * Gửi cấu trúc `SignalParams` vào hàng đợi bằng `xQueueSend()`.
+  * Gửi cấu trúc `LedConfig` vào hàng đợi bằng `xQueueSend()`.
 
 #### 4. Khởi động Scheduler
 
@@ -104,3 +104,4 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 **Source code:** [Bài 12](main.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1xVIidrJJnMDRVxv5WBiCA5UfqnloDLT2/view?usp=sharing)
+
