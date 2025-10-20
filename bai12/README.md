@@ -82,7 +82,7 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 
 * **Task 2 – ControlTask:**
 
-  * Chu kỳ gửi dữ liệu: 1 giây/lần.
+  * Chu kỳ gửi dữ liệu: 2 giây/lần.
   * Thay đổi lần lượt các giá trị frequency và dutyCycle (hàm `rand()`).
   * Gửi cấu trúc `LedConfig` vào hàng đợi bằng `xQueueSend()`.
 
@@ -104,5 +104,6 @@ Viết chương trình sử dụng **FreeRTOS** gồm 2 tác vụ chạy song so
 **Source code:** [Bài 12](main.c)  
 
 **Video Demo:** [Demo](https://drive.google.com/file/d/1xVIidrJJnMDRVxv5WBiCA5UfqnloDLT2/view?usp=sharing)
+
 
 
