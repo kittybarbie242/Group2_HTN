@@ -2,33 +2,30 @@
 #include "task.h"
 #include "queue.h"
 #include <stdlib.h>
-
 #include "stm32f10x.h"
-#include "stm32f10x_rcc.h"
-#include "stm32f10x_gpio.h"
 
 typedef struct {
     uint32_t frequency;
     uint8_t  dutyCycle;
-} LedConfig_t;
+} LedConfig;
 
 #define LED_ON()  GPIO_ResetBits(GPIOC, GPIO_Pin_13)
 #define LED_OFF() GPIO_SetBits(GPIOC, GPIO_Pin_13)
 
-QueueHandle_t xLedConfigQueue;
+QueueHandle_t LedConfigQueue;
 
-void GPIO_Init_SPL(void);
-void vLedBlinkTask(void *pvParameters);
-void vDataGenerateTask(void *pvParameters);
+void GPIO_Config(void);
+void LedBlinkTask(void *pvParameters);
+void ControlTask(void *pvParameters);
 
 int main(void)
 {
-  GPIO_Init_SPL();
+  GPIO_Config();
 
-  xLedConfigQueue = xQueueCreate(5, sizeof(LedConfig_t));
+  LedConfigQueue = xQueueCreate(5, sizeof(LedConfig));
 
-  xTaskCreate(vLedBlinkTask, "LedBlink", 128, NULL, 1, NULL);
-  xTaskCreate(vDataGenerateTask, "DataGenerate", 128, NULL, 1, NULL);
+  xTaskCreate(LedBlinkTask, "LedBlink", 128, NULL, 1, NULL);
+  xTaskCreate(ControlTask, "DataGenerate", 128, NULL, 1, NULL);
 
   vTaskStartScheduler();
 
@@ -37,7 +34,7 @@ int main(void)
   }
 }
 
-void GPIO_Init_SPL(void)
+void GPIO_Config(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
@@ -47,16 +44,16 @@ void GPIO_Init_SPL(void)
     GPIO_Init(GPIOC, &GPIO_InitStructure);
 }
 
-void vLedBlinkTask(void *pvParameters)
+void LedBlinkTask(void *pvParameters)
 {
-    LedConfig_t currentConfig;
+    LedConfig currentConfig;
 		currentConfig.frequency =1;
 		currentConfig.dutyCycle =50;
     uint32_t period_ms, ton_ms, toff_ms;
 
     for (;;)
     {
-        xQueueReceive(xLedConfigQueue, &currentConfig, pdMS_TO_TICKS(10));
+        xQueueReceive(LedConfigQueue, &currentConfig, pdMS_TO_TICKS(10));
 
         period_ms = 1000 / currentConfig.frequency;
         ton_ms = period_ms * currentConfig.dutyCycle / 100;
@@ -76,9 +73,9 @@ void vLedBlinkTask(void *pvParameters)
     }
 }
 
-void vDataGenerateTask(void *pvParameters)
+void ControlTask(void *pvParameters)
 {
-    LedConfig_t newConfig;
+    LedConfig newConfig;
 
     for (;;)
     {
@@ -87,7 +84,6 @@ void vDataGenerateTask(void *pvParameters)
         newConfig.frequency = (rand() % 10) + 1;
         newConfig.dutyCycle = (rand() % 81) + 10;
 
-        xQueueSend(xLedConfigQueue, (void *)&newConfig, 0);
+        xQueueSend(LedConfigQueue, &newConfig, 0);
     }
 }
-
