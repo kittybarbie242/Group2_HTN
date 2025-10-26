@@ -4,7 +4,7 @@
 
 ## **1. Yêu Cầu**
 
-* Viết chương trình có **hai Task** gửi dữ liệu ra UART.
+* Viết chương trình có 2 Task gửi dữ liệu ra UART.
 * Mỗi Task gửi một chuỗi khác nhau, ví dụ:
   * Task1 gửi: `"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"`
   * Task2 gửi: `"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"`
@@ -93,6 +93,7 @@
 ![alt text](image2.jpg)
 
 **Video Demo:** [Link](https://drive.google.com/drive/folders/19U7jRkqjUVH6kjL8KimZb8kITfMR30vp?usp=sharing)
+
 
 
 
