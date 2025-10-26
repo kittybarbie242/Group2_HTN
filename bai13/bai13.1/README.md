@@ -69,3 +69,9 @@
 * Cấu hình ưu tiên phù hợp giúp chương trình phản ứng nhanh, không bị trễ.
 * Chương trình thể hiện rõ khả năng **đa nhiệm và đồng bộ ISR – Task trong FreeRTOS**.
 * Là nền tảng để mở rộng sang các ứng dụng phức tạp hơn như: **báo động, xử lý sự kiện ngoại vi, hoặc quản lý nhiều cảm biến.**
+
+---
+
+**Video Demo:** [Link](https://drive.google.com/drive/folders/19U7jRkqjUVH6kjL8KimZb8kITfMR30vp?usp=sharing)
+
+
