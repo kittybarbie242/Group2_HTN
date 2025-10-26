@@ -1,4 +1,4 @@
-# **BÀI 1: Sử Dụng Ngắt Ngoài Và Task Trong FREERTOS**
+# **Bài 1: Sử Dụng Ngắt Ngoài Và Task Trong FREERTOS**
 
 ---
 
@@ -73,6 +73,7 @@
 ---
 
 **Video Demo:** [Link](https://drive.google.com/drive/folders/19U7jRkqjUVH6kjL8KimZb8kITfMR30vp?usp=sharing)
+
 
 
 
