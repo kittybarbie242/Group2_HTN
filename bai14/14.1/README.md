@@ -99,3 +99,9 @@ TaskMain sau khi lần lượt kích hoạt 3 Task riêng lẻ, sẽ set đồng
 
 ---
 
+**Hình ảnh thực tế:**
+
+![alt text](img1.jpg)
+
+**Video Demo:** [Link](https://drive.google.com/drive/folders/19U7jRkqjUVH6kjL8KimZb8kITfMR30vp?usp=sharing)
+
