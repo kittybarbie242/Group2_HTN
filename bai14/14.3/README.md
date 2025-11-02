@@ -51,4 +51,10 @@ Mục tiêu của bài là giúp hiểu cách vi điều khiển **ngủ sâu ho
 
 ---
 
+**Hình ảnh thực tế:**
+
+![alt text](img3.jpg)
+
+**Video Demo:** [Link](https://drive.google.com/drive/folders/18AB3U_aaBF28kigNuzHOAKb5ejsTVPNG?usp=sharing)
+
 
