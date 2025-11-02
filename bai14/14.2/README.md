@@ -45,3 +45,6 @@ Việc sử dụng **Idle Hook kết hợp lệnh `__WFI()`** là giải pháp h
 Thấy rõ được sự khác biệt giữa **Delay (CPU vẫn chạy)** và **Sleep (CPU thực sự nghỉ)** — một yếu tố rất quan trọng khi thiết kế các hệ thống nhúng dùng pin.
 
 ---
+
+**Video Demo:** [Link](https://drive.google.com/drive/folders/18AB3U_aaBF28kigNuzHOAKb5ejsTVPNG?usp=sharing)
+
